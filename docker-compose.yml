@@ -1,0 +1,14 @@
+version: '3'
+services:
+  r0uei:
+    platform: linux/amd64
+    image: "r0uei:0.1.0"
+    container_name: "r0uei"
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    command: bundle exec rackup -p 4567 -o 0.0.0.0
+    ports:
+      - 4567:4567
+    volumes:
+      - ./app:/usr/src/app:cached
