@@ -36,6 +36,29 @@ class App < Sinatra::Base
     redirect '/'
   end
   
+  get '/signup' do
+    erb :signup
+  end
+
+  post '/signup' do
+    a = User.all
+    maxid = 0
+    a.each do |ai|
+      if ai.id > maxid
+        maxid = ai.id
+      end
+    end
+
+    u = User.new
+    u.id = maxid + 1
+    u.username = params[:username]
+    u.passwd = Digest::SHA256.hexdigest(params[:passwd])
+    u.email = params[:email]
+    u.save
+
+    redirect '/login'
+  end
+ 
   get '/failure' do
     session.clear
     erb :failure
