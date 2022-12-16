@@ -30,6 +30,7 @@ class App < Sinatra::Base
   end
   
   get '/login' do
+    @notfounduser = session[:notfounduser]
     erb :login
   end
   
@@ -92,14 +93,17 @@ class App < Sinatra::Base
     passwd = params[:passwd]
     
     begin
-      a = User.find_by(username: name)
-      ipasswd_hashed = Digest::SHA256.hexdigest(passwd)
-      if a.passwd == ipasswd_hashed
-        session[:user_id] = a.user_id
-        p session[:user_id]
-        redirect '/'
+      hashed_passwd = Digest::SHA256.hexdigest(passwd)
+      a = User.find_by(username: name, passwd: hashed_passwd)
+      if a == nil
+        session[:notfounduser] = "ユーザー名かパスワードが間違っています"
+        redirect '/login'
       end
-      redirect '/failure'
+      session[:user_id] = a.user_id
+
+      redirect '/'
+    end
+  end
     end
   end
   
