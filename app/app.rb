@@ -56,13 +56,17 @@ class App < Sinatra::Base
       end
     end
 
-    u = User.new
-    u.id = maxid + 1
-    u.user_id = SecureRandom.uuid
-    u.username = params[:username]
-    u.passwd = Digest::SHA256.hexdigest(params[:passwd])
-    u.email = params[:email]
-    u.save
+    begin
+      u = User.new
+      u.id = maxid + 1
+      u.user_id = SecureRandom.uuid
+      u.username = params[:username]
+      u.passwd = Digest::SHA256.hexdigest(params[:passwd])
+      u.email = params[:email]
+      u.save
+    rescue => e
+      p e
+    end
 
     redirect '/login'
   end
