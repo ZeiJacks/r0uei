@@ -1,1 +1,12 @@
-Hi, <%= @u %>
+<a href="/<%= @u %>">profile</a>
+<form action="/report" method="post">
+    <div>
+        <input type="text" name="report" maxlength="140" placeholder="コメント">
+    </div>
+    <input type="submit" value="投稿">
+</form>
+
+<div>
+    <h2>活動報告ログ</h2>
+    <%= @report %>
+</div>
