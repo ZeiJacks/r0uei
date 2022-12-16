@@ -37,6 +37,7 @@ class App < Sinatra::Base
   end
   
   get '/signup' do
+    @errormsg = session[:errormsg]
     erb :signup
   end
 
@@ -46,6 +47,10 @@ class App < Sinatra::Base
     a.each do |ai|
       if ai.id > maxid
         maxid = ai.id
+      end
+      if ai.username == params[:username]
+        session[:errormsg] = "既に登録されているユーザー名です"
+        redirect '/signup'
       end
     end
 
