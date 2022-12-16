@@ -16,15 +16,21 @@ use Rack::Session::Cookie,
 class User < ActiveRecord::Base
 end
 
+class Report < ActiveRecord::Base
+end
+
 class App < Sinatra::Base
   enable :sessions
 
   get '/' do
     if session[:user_id] == nil
+      @report = disp_reports()
       erb :index
     else
       u = User.find_by(user_id: session[:user_id])
       @u = u.username
+      @report = disp_reports()
+
       erb :index4login
     end
   end
@@ -121,7 +127,19 @@ class App < Sinatra::Base
 
     redirect '/'
   end
+
+  def disp_reports()
+    report = ""
+    begin
+      (Report.all).each do |a|
+        report += "<article>"
+        report += "<p>#{a.report}</p>"
+        report += "</article>"
+      end
+    rescue => e
+      p e
     end
+    return report
   end
   
 end
