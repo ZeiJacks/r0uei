@@ -104,6 +104,23 @@ class App < Sinatra::Base
       redirect '/'
     end
   end
+
+  post '/report' do
+    if session[:user_id] == nil
+      redirect '/login'
+    end
+    begin
+      r = Report.new
+      r.user_id = session[:user_id]
+      r.report = CGI.escapeHTML(params[:report])
+      r.created_at = Time.now
+      r.save
+    rescue => e
+      p e
+    end
+
+    redirect '/'
+  end
     end
   end
   
