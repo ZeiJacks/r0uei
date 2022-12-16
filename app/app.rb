@@ -3,6 +3,7 @@ require 'sinatra/activerecord'
 require 'json'
 require 'digest/sha2'
 require 'cgi'
+require 'securerandom'
 
 set :environment, :production
 set :session_store, Rack::Session::Cookie
@@ -19,10 +20,11 @@ class App < Sinatra::Base
   enable :sessions
 
   get '/' do
-    @u = session[:username]
-    if @u == nil
+    if session[:user_id] == nil
       erb :index
     else
+      u = User.find_by(user_id: session[:user_id])
+      @u = u.username
       erb :index4login
     end
   end
@@ -56,6 +58,7 @@ class App < Sinatra::Base
 
     u = User.new
     u.id = maxid + 1
+    u.user_id = SecureRandom.uuid
     u.username = params[:username]
     u.passwd = Digest::SHA256.hexdigest(params[:passwd])
     u.email = params[:email]
@@ -70,9 +73,14 @@ class App < Sinatra::Base
   end
   
   get '/contents' do
-    if session[:username] != nil
+    if session[:user_id] != nil
       erb :index4login
     end
+  end
+  
+  get '/:username' do
+    @username = params[:username]
+    erb :profile
   end
   
   post '/auth' do
@@ -83,8 +91,8 @@ class App < Sinatra::Base
       a = User.find_by(username: name)
       ipasswd_hashed = Digest::SHA256.hexdigest(passwd)
       if a.passwd == ipasswd_hashed
-        session[:username] = name
-        p session[:username]
+        session[:user_id] = a.user_id
+        p session[:user_id]
         redirect '/'
       end
       redirect '/failure'
