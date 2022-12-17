@@ -1,12 +1,77 @@
-<form action="/signup" method="post">
-    <div>
-        名前 <input type="text" name="username" maxlength="20" >
-        パスワード <input type="password" name="passwd" maxlength="20" >
-        メールアドレス <input type="email" name="email" >
-        <input type="submit" value="サインアップ">
+<style>
+  .mainsignup {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  }
+  a {
+    text-decoration-line: underline;
+    color: black;
+  }
+  a:hover {
+    text-decoration: none;
+  }
+  .inputspace {
+    display: flex;
+    width: 400px;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    border-radius: 10px;
+    background-color: #3f72af;
+    color: white;
+  }
+  .inputspace input {
+    margin: 10px;
+    font-size: 16px;
+    display: block;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+  }
+  .inputspace input:focus {
+    outline-style: solid;
+    outline-color: black;
+    outline-width: 2px;
+  }
+  .inputspace p {
+    margin: 15px;
+  }
+  .button {
+    border-radius: 10px;
+    border: solid 1px gray;
+    color: black;
+    background: none;
+    width: 460px;
+    margin-top: 20px;
+    transition: 0.2s;
+    padding: 10px;
+  }
+  .button:hover {
+    background: #112d4e;
+    color: white;
+  }
+</style>
+
+<div class="mainsignup">
+  <form action="/signup" method="post">
+    <div class="inputspace">
+      <div>
+        <p>名前</p>
+        <p>パスワード</p>
+        <p>メールアドレス</p>
+      </div>
+      <div>
+        <input type="text" name="username" maxlength="20" />
+        <input type="password" name="passwd" maxlength="20" />
+        <input type="email" name="email" />
+      </div>
     </div>
+    <input type="submit" value="サインアップ" class="button"/>
     <div>
-        <p><%= @errormsg %></p>
+      <p><%= @errormsg %></p>
     </div>
     <a href="/login">登録済みの方はこちら</a>
-</form>
+  </form>
+</div>
