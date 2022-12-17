@@ -12,40 +12,28 @@
   text-align: center;
 }
 
-h1 {
-  text-align: center;
-}
-
 a {
   text-decoration-line: underline;
   color: black;
 }
-a:hover {
-  text-decoration: none;
-}
+
 .inputspace {
   display: flex;
   width: 400px;
   align-items: center;
   justify-content: center;
   padding: 30px;
-  border-radius: 10px;
-  background-color: #3f72af;
-  color: white;
+  border: solid 1px gray;
 }
 .inputspace input {
   margin: 10px;
   font-size: 16px;
   display: block;
   padding: 5px;
-  border: none;
-  border-radius: 5px;
+  border: solid 1px gray;
+  background-color: #F9F7F7;
 }
-.inputspace input:focus {
-  outline-style: solid;
-  outline-color: black;
-  outline-width: 2px;
-}
+
 .inputspace p {
   margin: 15px;
 }
@@ -60,6 +48,5 @@ a:hover {
   padding: 10px;
 }
 .button:hover {
-  background: #112d4e;
-  color: white;
+  background-color: #F9F7F7;
 }
