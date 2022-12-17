@@ -1,13 +1,79 @@
-<form action="/auth" method="post">
+<style>
+  .mainlogin {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  }
+  a {
+    text-decoration-line: underline;
+    color: black;
+  }
+  a:hover {
+    text-decoration: none;
+  }
+  .inputspace {
+    display: flex;
+    width: 400px;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    border-radius: 10px;
+    background-color: #3f72af;
+    color: white;
+  }
+  .inputspace input {
+    margin: 10px;
+    font-size: 16px;
+    display: block;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+  }
+  .inputspace input:focus {
+    outline-style: solid;
+    outline-color: black;
+    outline-width: 2px;
+  }
+  .inputspace p {
+    margin: 15px;
+  }
+  .button {
+    border-radius: 10px;
+    border: solid 1px gray;
+    color: black;
+    background: none;
+    width: 460px;
+    margin-top: 20px;
+    transition: 0.2s;
+    padding: 10px;
+  }
+  .button:hover {
+    background: #112d4e;
+    color: white;
+  }
+</style>
+
+<div class="mainlogin">
+  <form action="/auth" method="post">
     <div>
-        名前 <input type="text" name="username" maxlength="20" >
-        パスワード <input type="password" name="passwd" maxlength="20" >
-        <input type="submit" value="ログイン">
+      <div class="inputspace">
         <div>
-            <p><%= @notfounduser %>
-        </div
+          <p>名前</p>
+          <p>パスワード</p>
+        </div>
+        <div>
+          <input type="text" name="username" maxlength="20" />
+          <input type="password" name="passwd" maxlength="20" />
+        </div>
+      </div>
+      <input type="submit" value="ログイン" class="button" />
     </div>
-    <div>
-        <a href="/signup">未登録の方はこちら</a>
-    </div
-</form>
+    <div style="color: red;">
+      <p><%= @notfounduser %></p>
+    </div>
+    <div style="text-align: center">
+      <a href="/signup">未登録の方はこちら</a>
+    </div>
+  </form>
+</div>
