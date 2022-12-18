@@ -1,18 +1,20 @@
-.login__title {
+.form__title {
   text-align: center;
 }
 
-.login__a {
+.form__a {
   text-decoration-line: underline;
   color: black;
 }
-.login {
+
+.form {
   width: 100%;
   display: flex;
   justify-content: center;
   text-align: center;
 }
-.login__input {
+
+.form__input {
   display: flex;
   width: 400px;
   align-items: center;
@@ -20,7 +22,7 @@
   padding: 30px;
   border: solid 1px gray;
 }
-.login__input input {
+.form__input input {
   margin: 10px;
   font-size: 16px;
   display: block;
@@ -29,15 +31,15 @@
   background-color: #f9f7f7;
 }
 
-.login__input p {
+.form__input p {
   margin: 15px;
 }
 
-.login__notfound {
+.form__error {
   color: red;
 }
 
-.login__input--submit {
+.form__input--submit {
   border-radius: 10px;
   border: solid 1px gray;
   color: black;
@@ -48,6 +50,6 @@
   padding: 10px;
 }
 
-.login__input--submit:hover {
+.form__input--submit:hover {
   background-color: #f9f7f7;
 }
