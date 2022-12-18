@@ -1,12 +1,23 @@
-<form action="/signup" method="post">
-    <div>
-        名前 <input type="text" name="username" maxlength="20" >
-        パスワード <input type="password" name="passwd" maxlength="20" >
-        メールアドレス <input type="email" name="email" >
-        <input type="submit" value="サインアップ">
+<h1 class="signup__title">サインアップ</h1>
+
+<div class="signup">
+  <form action="/signup" method="post">
+    <div class="signup__input">
+      <div>
+        <p>名前</p>
+        <p>パスワード</p>
+        <p>メールアドレス</p>
+      </div>
+      <div>
+        <input type="text" name="username" maxlength="20" />
+        <input type="password" name="passwd" maxlength="20" />
+        <input type="email" name="email" />
+      </div>
     </div>
-    <div>
-        <p><%= @errormsg %></p>
+    <input type="submit" value="サインアップ" class="signup__input--submit" />
+    <div class="sign__error">
+      <p><%= @errormsg %></p>
     </div>
-    <a href="/login">登録済みの方はこちら</a>
-</form>
+    <a href="/login" class="signup__a">登録済みの方はこちら</a>
+  </form>
+</div>
