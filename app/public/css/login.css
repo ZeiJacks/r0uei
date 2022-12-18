@@ -1,0 +1,55 @@
+.login__title {
+  text-align: center;
+}
+
+.login__a {
+  text-decoration-line: underline;
+  color: black;
+}
+
+.login {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.login__input {
+  display: flex;
+  width: 400px;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  border: solid 1px gray;
+}
+.login__input input {
+  margin: 10px;
+  font-size: 16px;
+  display: block;
+  padding: 5px;
+  border: solid 1px gray;
+  background-color: #f9f7f7;
+}
+
+.login__input p {
+  margin: 15px;
+}
+
+.login__error {
+  color: red;
+}
+
+.login__input--submit {
+  border-radius: 10px;
+  border: solid 1px gray;
+  color: black;
+  background: none;
+  width: 460px;
+  margin-top: 20px;
+  transition: 0.2s;
+  padding: 10px;
+}
+
+.login__input--submit:hover {
+  background-color: #f9f7f7;
+}

@@ -1,25 +1,33 @@
-<h1 class="form__title">ログイン</h1>
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="/css/login.css">
+  </head>
+  <body>
+    <h1 class="login__title">ログイン</h1>
 
-<div class="form">
-  <form action="/auth" method="post">
-    <div>
-      <div class="form__input">
+    <div class="login">
+      <form action="/auth" method="post">
         <div>
-          <p>名前</p>
-          <p>パスワード</p>
+          <div class="login__input">
+            <div>
+              <p>名前</p>
+              <p>パスワード</p>
+            </div>
+            <div>
+              <input type="text" name="username" maxlength="20" />
+              <input type="password" name="passwd" maxlength="20" />
+            </div>
+          </div>
+          <input type="submit" value="ログイン" class="login__input--submit" />
+        </div>
+        <div class="login__error">
+          <p><%= @notfounduser %></p>
         </div>
         <div>
-          <input type="text" name="username" maxlength="20" />
-          <input type="password" name="passwd" maxlength="20" />
+          <a href="/signup" class="login__a">未登録の方はこちら</a>
         </div>
-      </div>
-      <input type="submit" value="ログイン" class="form__input--submit" />
+      </form>
     </div>
-    <div class="form__error">
-      <p><%= @notfounduser %></p>
-    </div>
-    <div>
-      <a href="/signup" class="form__a">未登録の方はこちら</a>
-    </div>
-  </form>
-</div>
+  </body>
+</html>
