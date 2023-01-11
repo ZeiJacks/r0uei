@@ -30,6 +30,11 @@ class App < Sinatra::Base
       u = User.find_by(user_id: session[:user_id])
       @u = u.username
       @report = disp_reports()
+      if session[:searched_result] != nil
+        @searched_result = session[:searched_result]
+      else
+        @searched_result = ""
+      end
 
       erb :index4login
     end
@@ -125,6 +130,29 @@ class App < Sinatra::Base
       p e
     end
 
+    redirect '/'
+  end
+
+  post '/search' do
+    if params[:searching_text] == ""
+      redirect '/'
+    end
+
+    begin
+      s = ActiveRecord::Base.connection.execute("SELECT \"reports\".user_id, \"reports\".report FROM reports
+        WHERE (report LIKE'%#{params[:searching_text]}%')")
+
+      p s
+      searched_result = ""
+      s.each do |si|
+        searched_result += "<article>"
+        searched_result += "<p>#{si["report"]}</p>"
+        searched_result += "</article>"
+      end
+    rescue => e
+      p e
+    end
+    session[:searched_result] = searched_result
     redirect '/'
   end
 
