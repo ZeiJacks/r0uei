@@ -28,7 +28,7 @@ class App < Sinatra::Base
       erb :index
     else
       u = User.find_by(user_id: session[:user_id])
-      @u = u.username
+      @uid = u.user_id
       @report = disp_reports()
       if session[:searched_result] != nil
         @searched_result = session[:searched_result]
@@ -94,8 +94,16 @@ class App < Sinatra::Base
     end
   end
   
-  get '/:username' do
-    @username = params[:username]
+  get '/:user_id' do
+    @username = ""
+    begin
+      if is_user_id(params[:user_id])
+        u = User.find_by(user_id: params[:user_id])
+        @username = u.username
+      end
+    rescue => e
+      p e
+    end
     erb :profile
   end
   
@@ -170,4 +178,11 @@ class App < Sinatra::Base
     return report
   end
   
+  def is_user_id(uid)
+    if uid.match(/\w{8}-\w{4}-\w{4}-\w{4}-\w{12}/) != nil
+      return true
+    end
+    return false
+  end
+
 end
