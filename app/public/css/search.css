@@ -19,23 +19,3 @@
     width: 80px;
     padding: 8px;
 }
-
-
-/* report style */
-
-.search_report article {
-    margin: 0px auto 10px auto;
-    height: 64px;
-    width: 420px;
-    border: solid 1px black;
-    word-break: break-word;
-}
-
-.search_report article p {
-    margin: 8px;
-}
-
-.search_report article span{
-    margin: 8px;
-    margin-right: 16px;
-}

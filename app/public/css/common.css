@@ -1,0 +1,18 @@
+/* report style */
+
+.report {
+    margin-bottom: 10px;
+    width: 720px;
+    border: solid 1px black;
+    padding: 8px;
+    word-break: break-word;
+}
+
+.report p {
+    margin: 8px;
+}
+
+.report span{
+    margin: 8px;
+    margin-right: 16px;
+}

@@ -172,7 +172,7 @@ class App < Sinatra::Base
       searched_result = ""
       s.each do |si|
         user = User.find_by(user_id: si["user_id"])
-        searched_result += "<article>"
+        searched_result += "<article class=\"report\">"
         searched_result += "<span>#{user["username"]}</span>"
         searched_result += "<span>#{extract_yyyyMMdd(si["created_at"])}</span>"
         searched_result += "<p>#{si["report"]}</p>"
@@ -190,7 +190,7 @@ class App < Sinatra::Base
     begin
       (Report.all).each do |a|
         user = User.find_by(user_id: a["user_id"])
-        report += "<article>"
+        report += "<article class=\"report\">"
         report += "<span>#{user["username"]}</span>"
         report += "<span>#{extract_yyyyMMdd(a["created_at"])}</span>"
         report += "<p>#{a.report}</p>"

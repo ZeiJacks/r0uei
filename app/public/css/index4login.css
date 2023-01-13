@@ -21,21 +21,3 @@
     margin: 0 auto;
 }
 
-/* report style */
-
-.index4login_report article {
-    margin-bottom: 10px;
-    width: 720px;
-    border: solid 1px black;
-    padding: 8px;
-    word-break: break-word;
-}
-
-.index4login_report article p {
-    margin: 8px;
-}
-
-.index4login_report article span{
-    margin: 8px;
-    margin-right: 16px;
-}
