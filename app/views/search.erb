@@ -1,0 +1,11 @@
+<form action="/search" method="post">
+    <div>
+        <input type="text" name="searching_text" maxlength="140" placeholder="キーワード">
+    </div>
+    <input type="submit" value="検索">
+</form>
+
+<h2>検索結果</h2>
+<div>
+    <%= @searched_result %>
+</div>

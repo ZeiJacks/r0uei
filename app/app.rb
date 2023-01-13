@@ -28,8 +28,13 @@ class App < Sinatra::Base
       erb :index
     else
       u = User.find_by(user_id: session[:user_id])
-      @u = u.username
+      @uid = u.user_id
       @report = disp_reports()
+      if session[:searched_result] != nil
+        @searched_result = session[:searched_result]
+      else
+        @searched_result = ""
+      end
 
       erb :index4login
     end
@@ -89,8 +94,16 @@ class App < Sinatra::Base
     end
   end
   
-  get '/:username' do
-    @username = params[:username]
+  get '/users/:user_id' do
+    @username = ""
+    begin
+      if is_user_id(params[:user_id])
+        u = User.find_by(user_id: params[:user_id])
+        @username = u.username
+      end
+    rescue => e
+      p e
+    end
     erb :profile
   end
   
@@ -111,6 +124,14 @@ class App < Sinatra::Base
     end
   end
 
+  get '/report/new' do
+    if session[:user_id] == nil
+      redirect '/login'
+    end
+
+    erb :new_report
+  end
+
   post '/report' do
     if session[:user_id] == nil
       redirect '/login'
@@ -128,6 +149,38 @@ class App < Sinatra::Base
     redirect '/'
   end
 
+  get '/search' do
+    if session[:user_id] == nil
+      redirect '/login'
+    end
+    @searched_result = session[:searched_result]
+
+    erb :search
+  end
+
+  post '/search' do
+    if params[:searching_text] == ""
+      redirect '/search'
+    end
+
+    begin
+      s = ActiveRecord::Base.connection.execute("SELECT \"reports\".user_id, \"reports\".report FROM reports
+        WHERE (report LIKE'%#{params[:searching_text]}%')")
+
+      p s
+      searched_result = ""
+      s.each do |si|
+        searched_result += "<article>"
+        searched_result += "<p>#{si["report"]}</p>"
+        searched_result += "</article>"
+      end
+    rescue => e
+      p e
+    end
+    session[:searched_result] = searched_result
+    redirect '/search'
+  end
+
   def disp_reports()
     report = ""
     begin
@@ -142,4 +195,11 @@ class App < Sinatra::Base
     return report
   end
   
+  def is_user_id(uid)
+    if uid.match(/\w{8}-\w{4}-\w{4}-\w{4}-\w{12}/) != nil
+      return true
+    end
+    return false
+  end
+
 end
