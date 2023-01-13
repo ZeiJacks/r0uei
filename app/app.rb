@@ -124,6 +124,14 @@ class App < Sinatra::Base
     end
   end
 
+  get '/report/new' do
+    if session[:user_id] == nil
+      redirect '/login'
+    end
+
+    erb :new_report
+  end
+
   post '/report' do
     if session[:user_id] == nil
       redirect '/login'
