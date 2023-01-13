@@ -1,0 +1,35 @@
+.search_wrapper {
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+.search_input-wrapper {
+    display: flex;
+}
+
+.search_input-wrapper input {
+    height: 42px;
+}
+
+.search_input-wrapper input[type="text"] {
+    width: 640px;
+}
+
+.search_input-wrapper input[type="submit"] {
+    width: 80px;
+    padding: 8px;
+}
+
+
+/* report style */
+
+.search_report article {
+    margin: 0px auto 10px auto;
+    height: 64px;
+    width: 420px;
+    border: solid 1px black;
+}
+
+.search_report article p {
+    margin: 4px;
+}

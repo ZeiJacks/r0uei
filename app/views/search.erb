@@ -1,11 +1,19 @@
-<form action="/search" method="post">
-    <div>
-        <input type="text" name="searching_text" maxlength="140" placeholder="キーワード">
-    </div>
-    <input type="submit" value="検索">
-</form>
-
-<h2>検索結果</h2>
-<div>
-    <%= @searched_result %>
+<div class="search_wrapper">
+  <div class="search_form-wrapper">
+    <form action="/search" method="post">
+      <div class="search_input-wrapper">
+        <div>
+          <input
+            type="text"
+            name="searching_text"
+            maxlength="140"
+            placeholder="キーワード"
+          />
+        </div>
+        <input type="submit" value="検索" />
+      </div>
+    </form>
+  </div>
+  <h2>検索結果</h2>
+  <div class="search_report"><%= @searched_result %></div>
 </div>
