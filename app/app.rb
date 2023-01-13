@@ -94,7 +94,7 @@ class App < Sinatra::Base
     end
   end
   
-  get '/:user_id' do
+  get '/users/:user_id' do
     @username = ""
     begin
       if is_user_id(params[:user_id])
