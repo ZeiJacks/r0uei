@@ -28,8 +28,14 @@
     height: 64px;
     width: 420px;
     border: solid 1px black;
+    word-break: break-word;
 }
 
 .search_report article p {
-    margin: 4px;
+    margin: 8px;
+}
+
+.search_report article span{
+    margin: 8px;
+    margin-right: 16px;
 }
