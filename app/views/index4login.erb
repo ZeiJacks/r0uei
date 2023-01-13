@@ -1,22 +1,12 @@
 <ul>
     <li><a href="/report/new">報告作成</a></li>
+    <li><a href="/search">検索</a></li>
     <li><a href="/users/<%= @uid %>">プロフィール</a></li>
     <li><a href="/logout">ログアウト</a></li>
 </ul>
-
-<form action="/search" method="post">
-    <div>
-        <input type="text" name="searching_text" maxlength="140" placeholder="検索">
-    </div>
-    <input type="submit" value="検索">
-</form>
 
 <div>
     <h2>活動報告ログ</h2>
     <%= @report %>
 </div>
 
-<div>
-    <h2>検索結果</h2>
-    <%= @searched_result %>
-</div>

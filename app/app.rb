@@ -149,9 +149,18 @@ class App < Sinatra::Base
     redirect '/'
   end
 
+  get '/search' do
+    if session[:user_id] == nil
+      redirect '/login'
+    end
+    @searched_result = session[:searched_result]
+
+    erb :search
+  end
+
   post '/search' do
     if params[:searching_text] == ""
-      redirect '/'
+      redirect '/search'
     end
 
     begin
@@ -169,7 +178,7 @@ class App < Sinatra::Base
       p e
     end
     session[:searched_result] = searched_result
-    redirect '/'
+    redirect '/search'
   end
 
   def disp_reports()
