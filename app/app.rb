@@ -21,6 +21,7 @@ end
 
 class App < Sinatra::Base
   enable :sessions
+  ActiveRecord.default_timezone = :local
 
   get '/' do
     if session[:user_id] == nil
@@ -170,7 +171,10 @@ class App < Sinatra::Base
       p s
       searched_result = ""
       s.each do |si|
+        user = User.find_by(user_id: si["user_id"])
         searched_result += "<article>"
+        searched_result += "<span>#{user["username"]}</span>"
+        searched_result += "<span>#{extract_yyyyMMdd(si["created_at"])}</span>"
         searched_result += "<p>#{si["report"]}</p>"
         searched_result += "</article>"
       end
@@ -185,7 +189,10 @@ class App < Sinatra::Base
     report = ""
     begin
       (Report.all).each do |a|
+        user = User.find_by(user_id: a["user_id"])
         report += "<article>"
+        report += "<span>#{user["username"]}</span>"
+        report += "<span>#{extract_yyyyMMdd(a["created_at"])}</span>"
         report += "<p>#{a.report}</p>"
         report += "</article>"
       end
@@ -195,6 +202,10 @@ class App < Sinatra::Base
     return report
   end
   
+  def extract_yyyyMMdd(ymd)
+    return ymd.strftime("%Y/%m/%d %H:%M")
+  end
+
   def is_user_id(uid)
     if uid.match(/\w{8}-\w{4}-\w{4}-\w{4}-\w{12}/) != nil
       return true
