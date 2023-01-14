@@ -203,7 +203,6 @@ class App < Sinatra::Base
   end
 
   def extract_yyyyMMdd(ymd)
-    puts ymd.class
     if ymd.is_a?(String)
       ymd = Time.parse(ymd)
     end
