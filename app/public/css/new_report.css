@@ -4,11 +4,15 @@
     margin: 0 auto;
 }
 
-.new_report__input__wrapper input[type="text"] {
-    width: 640px;
+.new_report__input__wrapper textarea {
+    width: 440px;
+    height: 80px;
     border: solid 1px black;
     padding: 8px;
     border-radius: 8px;
+    vertical-align: top;
+    overflow-wrap: break-word;
+    resize: none;
 }
 
 .new_report__input__wrapper input[type="submit"] {
