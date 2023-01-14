@@ -16,3 +16,11 @@
     margin: 8px;
     margin-right: 16px;
 }
+
+.report > .username {
+    font-size: 20px;
+}
+
+.report > .date {
+    color: #656565;
+}
