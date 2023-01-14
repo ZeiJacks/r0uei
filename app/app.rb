@@ -28,8 +28,7 @@ class App < Sinatra::Base
       @report = disp_reports()
       erb :index
     else
-      u = User.find_by(user_id: session[:user_id])
-      @uid = u.user_id
+      @uid = session[:user_id]
       @report = disp_reports()
       if session[:searched_result] != nil
         @searched_result = session[:searched_result]
@@ -129,6 +128,7 @@ class App < Sinatra::Base
     if session[:user_id] == nil
       redirect '/login'
     end
+    @uid = session[:user_id]
 
     erb :new_report
   end
@@ -155,6 +155,7 @@ class App < Sinatra::Base
       redirect '/login'
     end
     @searched_result = session[:searched_result]
+    @uid = session[:user_id]
 
     erb :search
   end
@@ -165,10 +166,9 @@ class App < Sinatra::Base
     end
 
     begin
-      s = ActiveRecord::Base.connection.execute("SELECT \"reports\".user_id, \"reports\".report FROM reports
-        WHERE (report LIKE'%#{params[:searching_text]}%')")
+      s = ActiveRecord::Base.connection.execute("SELECT \"reports\".user_id, \"reports\".report, \"reports\".created_at
+                                                 FROM reports WHERE (report LIKE'%#{params[:searching_text]}%')")
 
-      p s
       searched_result = ""
       s.each do |si|
         searched_result += report_component(si)
@@ -204,6 +204,9 @@ class App < Sinatra::Base
   end
 
   def extract_yyyyMMdd(ymd)
+    if ymd.is_a?(String)
+      ymd = Time.parse(ymd)
+    end
     return ymd.strftime("%Y/%m/%d %H:%M")
   end
 
