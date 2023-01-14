@@ -1,19 +1,29 @@
-<div class="search_wrapper">
-  <div class="search_form-wrapper">
-    <form action="/search" method="post">
-      <div class="search_input-wrapper">
-        <div>
-          <input
-            type="text"
-            name="searching_text"
-            maxlength="140"
-            placeholder="キーワード"
-          />
-        </div>
-        <input type="submit" value="検索" />
-      </div>
-    </form>
+<div class="main_wrapper">
+  <div>
+    <ul>
+      <li><a href="/report/new">報告作成</a></li>
+      <li><a href="/search">検索</a></li>
+      <li><a href="/users/<%= @uid %>">プロフィール</a></li>
+      <li><a href="/logout">ログアウト</a></li>
+    </ul>
   </div>
-  <h2>検索結果</h2>
-  <div class="search_report"><%= @searched_result %></div>
+  <div class="search_wrapper">
+    <div class="search_form-wrapper">
+      <form action="/search" method="post">
+        <div class="search_input_wrapper">
+          <div>
+            <input
+              type="text"
+              name="searching_text"
+              maxlength="140"
+              placeholder="キーワード"
+            />
+          </div>
+          <input type="submit" value="検索" />
+        </div>
+      </form>
+    </div>
+    <h2>検索結果</h2>
+    <div class="search_report"><%= @searched_result %></div>
+  </div>
 </div>

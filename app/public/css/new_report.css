@@ -1,0 +1,17 @@
+.new_report__form__wrapper {
+    text-align: right;
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+.new_report__input__wrapper input[type="text"] {
+    width: 640px;
+    border: solid 1px black;
+    padding: 8px;
+    border-radius: 8px;
+}
+
+.new_report__input__wrapper input[type="submit"] {
+    width: 80px;
+    padding: 8px;
+}

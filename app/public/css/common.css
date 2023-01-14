@@ -16,3 +16,22 @@
     margin: 8px;
     margin-right: 16px;
 }
+
+.main_wrapper {
+    display: flex;
+    width: 100%;
+}
+
+.main_wrapper ul {
+    padding: 0px;
+}
+
+.main_wrapper ul li{
+    list-style: none;
+    margin-bottom: 16px;
+}
+
+.main_wrapper a {
+    text-decoration: none;
+    color: black;
+}

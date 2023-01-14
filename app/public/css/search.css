@@ -3,19 +3,19 @@
     margin: 0 auto;
 }
 
-.search_input-wrapper {
+.search_input_wrapper {
     display: flex;
 }
 
-.search_input-wrapper input {
+.search_input_wrapper input {
     height: 42px;
 }
 
-.search_input-wrapper input[type="text"] {
+.search_input_wrapper input[type="text"] {
     width: 640px;
 }
 
-.search_input-wrapper input[type="submit"] {
+.search_input_wrapper input[type="submit"] {
     width: 80px;
     padding: 8px;
 }

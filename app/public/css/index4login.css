@@ -1,22 +1,3 @@
-.index4login_wrapper {
-    display: flex;
-    width: 100%;
-}
-
-.index4login_wrapper ul {
-    padding: 0px;
-}
-
-.index4login_wrapper ul li{
-    list-style: none;
-    margin-bottom: 16px;
-}
-
-.index4login_wrapper a {
-    text-decoration: none;
-    color: black;
-}
-
 .index4login_report {
     margin: 0 auto;
 }
