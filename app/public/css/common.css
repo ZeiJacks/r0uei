@@ -35,3 +35,10 @@
     text-decoration: none;
     color: black;
 }
+.report > .username {
+    font-size: 20px;
+}
+
+.report > .date {
+    color: #656565;
+}
