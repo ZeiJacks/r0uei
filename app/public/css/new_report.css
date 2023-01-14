@@ -11,6 +11,7 @@
     padding: 8px;
     border-radius: 8px;
     resize: none;
+    font-size: 16px;
 }
 
 .new_report__input__wrapper input[type="submit"] {
