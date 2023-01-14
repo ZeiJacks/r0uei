@@ -165,8 +165,7 @@ class App < Sinatra::Base
     end
 
     begin
-      s = ActiveRecord::Base.connection.execute("SELECT \"reports\".user_id, \"reports\".report FROM reports
-        WHERE (report LIKE'%#{params[:searching_text]}%')")
+      s = ActiveRecord::Base.connection.execute("SELECT \"reports\".user_id, \"reports\".report, \"reports\".created_at FROM reports WHERE (report LIKE'%#{params[:searching_text]}%')")
 
       p s
       searched_result = ""
@@ -198,12 +197,16 @@ class App < Sinatra::Base
     r = "<article class=\"report\">"
     r += "<span class=\"username\">#{user["username"]}</span>"
     r += "<span class=\"date\">#{extract_yyyyMMdd(r_report["created_at"])}</span>"
-    r += "<p>#{r_report.report}</p>"
+    r += "<p>#{r_report["report"]}</p>"
     r += "</article>"
     return r
   end
 
   def extract_yyyyMMdd(ymd)
+    puts ymd.class
+    if ymd.is_a?(String)
+      ymd = Time.parse(ymd)
+    end
     return ymd.strftime("%Y/%m/%d %H:%M")
   end
 
