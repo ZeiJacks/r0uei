@@ -10,8 +10,6 @@
     border: solid 1px black;
     padding: 8px;
     border-radius: 8px;
-    vertical-align: top;
-    overflow-wrap: break-word;
     resize: none;
 }
 
