@@ -1,6 +1,20 @@
-<form action="/report" method="post">
-    <div>
-        <input type="text" name="report" maxlength="140" placeholder="報告">
-    </div>
-    <input type="submit" value="投稿">
-</form>
+<div class="main_wrapper">
+  <div>
+    <ul>
+      <li><a href="/report/new">報告作成</a></li>
+      <li><a href="/search">検索</a></li>
+      <li><a href="/users/<%= @uid %>">プロフィール</a></li>
+      <li><a href="/logout">ログアウト</a></li>
+    </ul>
+  </div>
+  <div class="new_report__form__wrapper">
+    <form action="/report" method="post">
+      <div class="new_report__input__wrapper">
+        <div>
+          <textarea name="report" cols="30" rows="10" maxlength="140" placeholder="報告"></textarea>
+        </div>
+        <input type="submit" value="投稿" />
+      </div>
+    </form>
+  </div>
+</div>
