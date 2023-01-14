@@ -165,9 +165,9 @@ class App < Sinatra::Base
     end
 
     begin
-      s = ActiveRecord::Base.connection.execute("SELECT \"reports\".user_id, \"reports\".report, \"reports\".created_at FROM reports WHERE (report LIKE'%#{params[:searching_text]}%')")
+      s = ActiveRecord::Base.connection.execute("SELECT \"reports\".user_id, \"reports\".report, \"reports\".created_at
+                                                 FROM reports WHERE (report LIKE'%#{params[:searching_text]}%')")
 
-      p s
       searched_result = ""
       s.each do |si|
         searched_result += report_component(si)
