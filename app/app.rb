@@ -171,12 +171,7 @@ class App < Sinatra::Base
       p s
       searched_result = ""
       s.each do |si|
-        user = User.find_by(user_id: si["user_id"])
-        searched_result += "<article class=\"report\">"
-        searched_result += "<span>#{user["username"]}</span>"
-        searched_result += "<span>#{extract_yyyyMMdd(si["created_at"])}</span>"
-        searched_result += "<p>#{si["report"]}</p>"
-        searched_result += "</article>"
+        searched_result += report_component(si)
       end
     rescue => e
       p e
@@ -189,12 +184,7 @@ class App < Sinatra::Base
     report = ""
     begin
       (Report.all).each do |a|
-        user = User.find_by(user_id: a["user_id"])
-        report += "<article class=\"report\">"
-        report += "<span>#{user["username"]}</span>"
-        report += "<span>#{extract_yyyyMMdd(a["created_at"])}</span>"
-        report += "<p>#{a.report}</p>"
-        report += "</article>"
+        report += report_component(a)
       end
     rescue => e
       p e
@@ -202,6 +192,17 @@ class App < Sinatra::Base
     return report
   end
   
+  # r_report : record of report
+  def report_component(r_report)
+    user = User.find_by(user_id: r_report["user_id"])
+    r = "<article class=\"report\">"
+    r += "<span class=\"username\">#{user["username"]}</span>"
+    r += "<span class=\"date\">#{extract_yyyyMMdd(r_report["created_at"])}</span>"
+    r += "<p>#{r_report.report}</p>"
+    r += "</article>"
+    return r
+  end
+
   def extract_yyyyMMdd(ymd)
     return ymd.strftime("%Y/%m/%d %H:%M")
   end
