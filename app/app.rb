@@ -28,8 +28,7 @@ class App < Sinatra::Base
       @report = disp_reports()
       erb :index
     else
-      u = User.find_by(user_id: session[:user_id])
-      @uid = u.user_id
+      @uid = session[:user_id]
       @report = disp_reports()
       if session[:searched_result] != nil
         @searched_result = session[:searched_result]
@@ -129,6 +128,7 @@ class App < Sinatra::Base
     if session[:user_id] == nil
       redirect '/login'
     end
+    @uid = session[:user_id]
 
     erb :new_report
   end
@@ -155,6 +155,7 @@ class App < Sinatra::Base
       redirect '/login'
     end
     @searched_result = session[:searched_result]
+    @uid = session[:user_id]
 
     erb :search
   end
