@@ -1,44 +1,57 @@
 /* report style */
 
 .report {
-    margin-bottom: 10px;
-    width: 720px;
-    border: solid 1px black;
-    padding: 8px;
-    word-break: break-word;
+  margin-bottom: 10px;
+  width: 720px;
+  border: solid 1px gray;
+  border-radius: 8px;
+  padding: 8px;
+  word-break: break-word;
+  margin-bottom: 16px;
 }
 
 .report p {
-    margin: 8px;
+  margin: 8px;
 }
 
-.report span{
-    margin: 8px;
-    margin-right: 16px;
+.report span {
+  margin: 8px;
+  margin-right: 16px;
 }
 
 .main_wrapper {
-    display: flex;
-    width: 100%;
+  display: flex;
+  width: 100%;
+  padding: 48px 0;
 }
 
 .main_wrapper ul {
-    padding: 0px;
+  padding: 0px;
 }
 
-.main_wrapper ul li{
-    list-style: none;
-    margin-bottom: 16px;
+.main_wrapper ul li {
+  list-style: none;
+  margin-bottom: 16px;
 }
 
 .main_wrapper a {
-    text-decoration: none;
-    color: black;
+  text-decoration: none;
+  color: gray;
 }
+
+.main_wrapper a:hover {
+  color: black;
+}
+
 .report > .username {
-    font-size: 20px;
+  font-size: 20px;
 }
 
 .report > .date {
-    color: #656565;
+  color: #656565;
+}
+
+.main_nav {
+  margin: 24px 0;
+  position: fixed;
 }
