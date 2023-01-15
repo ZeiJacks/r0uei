@@ -1,21 +1,34 @@
 .search_wrapper {
-    max-width: 720px;
-    margin: 0 auto;
+  max-width: 720px;
+  margin: 0 auto;
 }
 
 .search_input_wrapper {
-    display: flex;
+  display: flex;
 }
 
 .search_input_wrapper input {
-    height: 42px;
+  height: 42px;
 }
 
 .search_input_wrapper input[type="text"] {
-    width: 640px;
+  width: 640px;
+  border-radius: 8px;
+  border: solid 1px gray;
 }
 
 .search_input_wrapper input[type="submit"] {
-    width: 80px;
-    padding: 8px;
+  width: 72px;
+  padding: 8px;
+  margin-left: 8px;
+  transition: 0.2s;
+  background-color: white;
+  border: solid 1px gray;
+  border-radius: 8px;
+  color: black;
+}
+
+.search_input_wrapper input[type="submit"]:hover {
+  background-color: #42a5f5;
+  color: white;
 }
