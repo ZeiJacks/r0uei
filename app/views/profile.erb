@@ -1,5 +1,18 @@
-<h1><%= @username %></h1>
-<div>
-    <h2>活動報告ログ</h2>
-    <%= @report %>
-</div>
+<div class="main_wrapper">
+    <div class="main_nav">
+      <ul>
+        <li><a href="/">活動報告ログ</a></li>
+        <li><a href="/report/new">報告作成</a></li>
+        <li><a href="/search">検索</a></li>
+        <li><a href="/users/<%= @uid %>">プロフィール</a></li>
+        <li><a href="/logout">ログアウト</a></li>
+      </ul>
+    </div>
+    <div class="profile_wrapper">
+      <h1><%= @username %></h1>
+      <div>
+        <h2>活動報告ログ</h2>
+        <%= @report %>
+      </div>
+    </div>
+  </div>
