@@ -150,11 +150,12 @@ class App < Sinatra::Base
     redirect '/'
   end
 
+  s_result = ""
   get '/search' do
     if session[:user_id] == nil
       redirect '/login'
     end
-    @searched_result = session[:searched_result]
+    @searched_result = s_result
     @uid = session[:user_id]
 
     erb :search
@@ -166,17 +167,17 @@ class App < Sinatra::Base
     end
 
     begin
-      s = ActiveRecord::Base.connection.execute("SELECT \"reports\".user_id, \"reports\".report, \"reports\".created_at
-                                                 FROM reports WHERE (report LIKE'%#{params[:searching_text]}%')")
+      s = ActiveRecord::Base.connection.execute("SELECT \"reports\".user_id, \"reports\".report, \"reports\".created_at FROM reports 
+        WHERE (report LIKE'%#{params[:searching_text]}%')")
 
-      searched_result = ""
+      s_result = ""
       s.each do |si|
-        searched_result += report_component(si)
+        s_result += report_component(si)
       end
     rescue => e
       p e
     end
-    session[:searched_result] = searched_result
+    @searched_result = s_result
     redirect '/search'
   end
 
