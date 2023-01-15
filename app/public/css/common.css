@@ -22,6 +22,7 @@
 .main_wrapper {
   display: flex;
   width: 100%;
+  padding: 48px 0;
 }
 
 .main_wrapper ul {
@@ -51,5 +52,6 @@
 }
 
 .main_nav {
+  margin: 48px 0;
   position: fixed;
 }
