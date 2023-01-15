@@ -1,0 +1,14 @@
+.layout_a {
+    color: black;
+    padding: 0px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.layout_a:hover {
+    text-decoration-line: underline;
+}
+
+.layout_h1 {
+    position: fixed;
+}

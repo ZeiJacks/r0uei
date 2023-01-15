@@ -198,7 +198,7 @@ class App < Sinatra::Base
     r = "<article class=\"report\">"
     r += "<span class=\"username\">#{user["username"]}</span>"
     r += "<span class=\"date\">#{extract_yyyyMMdd(r_report["created_at"])}</span>"
-    r += "<p>#{r_report["report"]}</p>"
+    r += "<p>#{r_report.report}</p>"
     r += "</article>"
     return r
   end
