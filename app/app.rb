@@ -23,6 +23,9 @@ class App < Sinatra::Base
   enable :sessions
   ActiveRecord.default_timezone = :local
 
+  # エラーメッセージ
+  e = ""
+
   get '/' do
     if session[:user_id] == nil
       @report = disp_reports()
@@ -157,6 +160,7 @@ class App < Sinatra::Base
     end
     @searched_result = s_result
     @uid = session[:user_id]
+    @err = e
 
     erb :search
   end
@@ -171,6 +175,10 @@ class App < Sinatra::Base
         WHERE (report LIKE'%#{params[:searching_text]}%')")
 
       s_result = ""
+      if s.size == 0
+        e = '検索結果がありません'
+      end
+
       s.each do |si|
         s_result += report_component(si)
       end
