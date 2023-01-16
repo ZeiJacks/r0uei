@@ -100,6 +100,7 @@ class App < Sinatra::Base
       if is_user_id(params[:user_id])
         u = User.find_by(user_id: params[:user_id])
         @username = u.username
+        @uid = session[:user_id]
       end
     rescue => e
       p e
