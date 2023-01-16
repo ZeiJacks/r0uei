@@ -104,6 +104,9 @@ class App < Sinatra::Base
         u = User.find_by(user_id: params[:user_id])
         @username = u.username
         @uid = session[:user_id]
+
+        user_id = session[:user_id]
+        @report = disp_reports_with_user_id(user_id)
       end
     rescue => e
       p e
@@ -179,7 +182,6 @@ class App < Sinatra::Base
       if s.size == 0
         e = '検索結果がありません'
       end
-
       s.each do |si|
         s_result += report_component(si)
       end
@@ -201,7 +203,19 @@ class App < Sinatra::Base
     end
     return report
   end
-  
+
+  def disp_reports_with_user_id(user_id)
+    report = ""
+    begin
+      (Report.where(user_id: user_id)).each do |a|
+        report += report_component(a)
+      end
+    rescue => e
+      p e
+    end
+    return report
+  end 
+
   # r_report : record of report
   def report_component(r_report)
     user = User.find_by(user_id: r_report["user_id"])
