@@ -124,7 +124,6 @@ class App < Sinatra::Base
 
   post '/users/:user_id/change_username' do
     begin
-      # user = User.find_by(user_id: session[:user_id])
       user = User.find_by(user_id: params[:user_id])
       user.update(username: params[:new_username])
     end
@@ -142,7 +141,7 @@ class App < Sinatra::Base
   post '/users/:user_id/change_passwd' do
     new_passwd = params[:new_userpasswd]
     begin
-      user = User.find_by(user_id: session[:user_id])
+      user = User.find_by(user_id: params[:user_id])
       hashed_new_passwd = Digest::SHA256.hexdigest(new_passwd)
       user.update(passwd: hashed_new_passwd)
     end
