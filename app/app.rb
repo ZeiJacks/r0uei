@@ -116,7 +116,7 @@ class App < Sinatra::Base
 
   get '/change_username' do
     if session[:user_id] == nil
-      erb :failure
+      redirect '/login'
     else
       erb :change_username
     end
@@ -132,7 +132,7 @@ class App < Sinatra::Base
  
   get '/change_passwd' do
     if session[:user_id] == nil
-      erb :failure
+      redirect '/login'
     else
       erb :change_passwd
     end
