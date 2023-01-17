@@ -1,5 +1,5 @@
 <div class="main_wrapper">
-  <form action="/users/:user_id/change_passwd" method="post">
+  <form action="/users/<%= @uid %>/change_passwd" method="post">
     <div>
       <div class="change_passwd__input">
         <input type="password" name="new_userpasswd" maxlength="20" />
