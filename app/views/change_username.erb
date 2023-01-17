@@ -1,15 +1,14 @@
 <div class="main_wrapper">
-    <form action="/change_username" method="post">
-      <div>
-        <div class="chante_username__input">
-          <input type="text" name="new_username" maxlength="20" />
-        </div>
-        <input
-          type="submit"
-          value="ユーザー名の変更"
-          class="change_username__input--submit"
-        />
+  <form action="/users/:user_id/change_username" method="post">
+    <div>
+      <div class="chante_username__input">
+        <input type="text" name="new_username" maxlength="20" />
       </div>
-    </form>
-  </div>
+      <input
+        type="submit"
+        value="ユーザー名の変更"
+        class="change_username__input--submit"
+      />
+    </div>
+  </form>
 </div>

@@ -114,15 +114,14 @@ class App < Sinatra::Base
     erb :profile
   end
 
-  get '/change_username' do
+  get '/users/:user_id/change_username' do
     if session[:user_id] == nil
       redirect '/login'
-    else
-      erb :change_username
     end
+    erb :change_username
   end
 
-  post '/change_username' do
+  post '/users/:user_id/change_username' do
     begin
       user = User.find_by(user_id: session[:user_id])
       user.update(username: params[:new_username])
@@ -130,15 +129,14 @@ class App < Sinatra::Base
     redirect "/users/#{session[:user_id]}"
   end
  
-  get '/change_passwd' do
+  get '/users/:user_id/change_passwd' do
     if session[:user_id] == nil
       redirect '/login'
-    else
-      erb :change_passwd
     end
+    erb :change_passwd
   end
 
-  post '/change_passwd' do
+  post '/users/:user_id/change_passwd' do
     new_passwd = params[:new_userpasswd]
     begin
       user = User.find_by(user_id: session[:user_id])
