@@ -99,13 +99,13 @@ class App < Sinatra::Base
   
   get '/users/:user_id' do
     @username = ""
+    user_id = params[:user_id]
     begin
-      if is_user_id(params[:user_id])
-        u = User.find_by(user_id: params[:user_id])
+      if is_user_id(user_id)
+        u = User.find_by(user_id: user_id)
         @username = u.username
-        @uid = session[:user_id]
+        @uid = user_id
 
-        user_id = session[:user_id]
         @report = disp_reports_with_user_id(user_id)
       end
     rescue => e
@@ -118,23 +118,44 @@ class App < Sinatra::Base
     if session[:user_id] == nil
       redirect '/login'
     end
-    @uid = session[:user_id]
+
+    user_id = params[:user_id]
+    if !is_user_id(user_id)
+      redirect '/'
+    end
+
+    @uid = user_id
     erb :change_username
   end
 
   post '/users/:user_id/change_username' do
+    if session[:user_id] == nil
+      redirect '/login'
+    end
+
+    user_id = params[:user_id]
+    if !is_user_id(user_id)
+      redirect '/'
+    end
+
     begin
-      user = User.find_by(user_id: params[:user_id])
+      user = User.find_by(user_id: user_id)
       user.update(username: params[:new_username])
     end
-    redirect "/users/#{session[:user_id]}"
+    redirect "/users/#{user_id}"
   end
  
   get '/users/:user_id/change_passwd' do
     if session[:user_id] == nil
       redirect '/login'
     end
-    @uid = session[:user_id]
+
+    user_id = params[:user_id]
+    if !is_user_id(user_id)
+      redirect '/'
+    end
+
+    @uid = user_id
     erb :change_passwd
   end
 
