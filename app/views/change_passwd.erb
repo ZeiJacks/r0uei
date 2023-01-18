@@ -1,0 +1,14 @@
+<div class="main_wrapper">
+  <form action="/users/<%= @uid %>/change_passwd" method="post">
+    <div>
+      <div class="change_passwd__input">
+        <input type="password" name="new_userpasswd" maxlength="20" />
+      </div>
+      <input
+        type="submit"
+        value="パスワードの変更"
+        class="change_passwd__input--submit"
+      />
+    </div>
+  </form>
+</div>

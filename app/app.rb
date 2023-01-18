@@ -113,7 +113,43 @@ class App < Sinatra::Base
     end
     erb :profile
   end
-  
+
+  get '/users/:user_id/change_username' do
+    if session[:user_id] == nil
+      redirect '/login'
+    end
+    @uid = session[:user_id]
+    erb :change_username
+  end
+
+  post '/users/:user_id/change_username' do
+    begin
+      user = User.find_by(user_id: params[:user_id])
+      user.update(username: params[:new_username])
+    end
+    redirect "/users/#{session[:user_id]}"
+  end
+ 
+  get '/users/:user_id/change_passwd' do
+    if session[:user_id] == nil
+      redirect '/login'
+    end
+    @uid = session[:user_id]
+    erb :change_passwd
+  end
+
+  post '/users/:user_id/change_passwd' do
+    new_passwd = params[:new_userpasswd]
+    begin
+      user = User.find_by(user_id: params[:user_id])
+      hashed_new_passwd = Digest::SHA256.hexdigest(new_passwd)
+      user.update(passwd: hashed_new_passwd)
+    end
+
+    session.clear
+    redirect '/login'
+  end 
+
   post '/auth' do
     name = params[:username]
     passwd = params[:passwd]
