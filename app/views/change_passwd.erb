@@ -1,14 +1,27 @@
 <div class="main_wrapper">
-  <form action="/users/<%= @uid %>/change_passwd" method="post">
-    <div>
-      <div class="change_passwd__input">
-        <input type="password" name="new_userpasswd" maxlength="20" />
+  <div class="main_nav">
+    <ul>
+      <li><a href="/">活動報告ログ</a></li>
+      <li><a href="/report/new">報告作成</a></li>
+      <li><a href="/search">検索</a></li>
+      <li><a href="/users/<%= @uid %>">プロフィール</a></li>
+      <li><a href="/logout">ログアウト</a></li>
+      <li><a href="/users/<%= @uid %>/change_username">ユーザー名の変更</a></li>
+      <li><a href="/users/<%= @uid %>/change_passwd">パスワードの変更</a></li>
+    </ul>
+  </div>
+  <div class="change_pages_wrapper">
+    <form action="/users/<%= @uid %>/change_passwd" method="post">
+      <div>
+        <div class="change_passwd__input">
+          <input type="password" name="new_userpasswd" maxlength="20" />
+        </div>
+        <input
+          type="submit"
+          value="パスワードの変更"
+          class="change_passwd__input--submit"
+        />
       </div>
-      <input
-        type="submit"
-        value="パスワードの変更"
-        class="change_passwd__input--submit"
-      />
-    </div>
-  </form>
+    </form>
+  </div>
 </div>

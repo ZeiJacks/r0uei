@@ -1,0 +1,30 @@
+.change_pages_wrapper {
+  margin: 0 auto;
+  text-align: right;
+}
+.change_pages_wrapper input {
+  width: 440px;
+  border: solid 1px black;
+  padding: 8px;
+  border-radius: 8px;
+  resize: none;
+  font-size: 16px;
+}
+
+.change_pages_wrapper input[type="submit"] {
+  width: 160px;
+  margin-top: 8px;
+  padding: 8px;
+  background: none;
+
+  transition: 0.2s;
+  background-color: white;
+  border: solid 1px gray;
+  border-radius: 8px;
+  color: black;
+}
+
+.change_pages_wrapper input[type="submit"]:hover {
+  background-color: #42a5f5;
+  color: white;
+}
