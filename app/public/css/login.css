@@ -37,10 +37,6 @@
   margin: 15px;
 }
 
-.login__error {
-  color: red;
-}
-
 .login__input--submit {
   border-radius: 10px;
   border: solid 1px gray;
