@@ -55,3 +55,7 @@
   margin: 24px 0;
   position: fixed;
 }
+
+.errormsg {
+  color: red;
+}

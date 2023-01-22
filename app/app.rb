@@ -44,7 +44,8 @@ class App < Sinatra::Base
   end
   
   get '/login' do
-    @notfounduser = session[:notfounduser]
+    @errormsg = session[:errormsg]
+    session[:errormsg] = ""
     erb :login
   end
   
@@ -55,10 +56,15 @@ class App < Sinatra::Base
   
   get '/signup' do
     @errormsg = session[:errormsg]
+    session[:errormsg] = ""
     erb :signup
   end
 
   post '/signup' do
+    if params[:username] == "" || params[:passwd] == "" || params[:email] == "" then
+      session[:errormsg] = "すべての項目を入力してください"
+      redirect '/signup'
+    end
     a = User.all
     maxid = 0
     a.each do |ai|
@@ -83,6 +89,7 @@ class App < Sinatra::Base
       p e
     end
 
+    session[:errormsg] = ""
     redirect '/login'
   end
  
@@ -125,6 +132,8 @@ class App < Sinatra::Base
     end
 
     @uid = user_id
+    @errormsg = session[:errormsg]
+    session[:errormsg] = ""
     erb :change_username
   end
 
@@ -133,6 +142,11 @@ class App < Sinatra::Base
       redirect '/login'
     end
 
+    if params[:new_username] == ""
+      session[:errormsg] = "何も入力されていません"
+      redirect "/users/#{session[:user_id]}/change_username"
+    end
+    
     user_id = params[:user_id]
     if !is_user_id(user_id)
       redirect '/'
@@ -156,10 +170,18 @@ class App < Sinatra::Base
     end
 
     @uid = user_id
+    @errormsg = session[:errormsg]
+    session[:errormsg] = ""
     erb :change_passwd
   end
 
   post '/users/:user_id/change_passwd' do
+
+    if params[:new_userpasswd] == ""
+      session[:errormsg] = "何も入力されていません"
+      redirect "/users/#{session[:user_id]}/change_passwd"
+    end
+
     new_passwd = params[:new_userpasswd]
     begin
       user = User.find_by(user_id: params[:user_id])
@@ -179,7 +201,7 @@ class App < Sinatra::Base
       hashed_passwd = Digest::SHA256.hexdigest(passwd)
       a = User.find_by(username: name, passwd: hashed_passwd)
       if a == nil
-        session[:notfounduser] = "ユーザー名かパスワードが間違っています"
+        session[:errormsg] = "ユーザー名かパスワードが間違っています"
         redirect '/login'
       end
       session[:user_id] = a.user_id
