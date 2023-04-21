@@ -242,8 +242,10 @@ class App < Sinatra::Base
       redirect '/login'
     end
     @searched_result = s_result
+    s_result = ""
     @uid = session[:user_id]
     @err = e
+    e = ""
 
     erb :search
   end
